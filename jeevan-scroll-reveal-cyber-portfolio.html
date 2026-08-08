@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jeevan | Cybersecurity Portfolio</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #01050b;
+    color: #bffcff;
+    font-family: Consolas, "Courier New", monospace;
+    overflow-x: hidden;
+
+    background-image:
+        linear-gradient(rgba(0,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,.035) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+}
+
+/* Scanline */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+
+    background:
+        linear-gradient(
+            transparent 0%,
+            rgba(0,255,255,.035) 50%,
+            transparent 100%
+        );
+
+    background-size: 100% 8px;
+    opacity: .35;
+}
+
+/* SECTION */
+
+section {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px 6vw;
+
+    position: relative;
+}
+
+/* MAIN HUD PANEL */
+
+.panel {
+    width: min(1000px, 94vw);
+
+    padding: 42px;
+
+    border: 1px solid #00ffff;
+
+    background: rgba(2,12,20,.88);
+
+    position: relative;
+
+    box-shadow:
+        0 0 18px rgba(0,255,255,.15),
+        inset 0 0 30px rgba(0,255,255,.025);
+
+    clip-path: polygon(
+        0 18px,
+        18px 0,
+        calc(100% - 18px) 0,
+        100% 18px,
+        100% calc(100% - 18px),
+        calc(100% - 18px) 100%,
+        18px 100%,
+        0 calc(100% - 18px)
+    );
+}
+
+/* HUD CORNERS */
+
+.panel::before,
+.panel::after {
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 3px;
+
+    background: #00ffff;
+
+    box-shadow: 0 0 12px #00ffff;
+}
+
+.panel::before {
+    top: -2px;
+    left: 28px;
+}
+
+.panel::after {
+    bottom: -2px;
+    right: 28px;
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(90px)
+        scale(.94);
+
+    transition:
+        1s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+/* TEXT */
+
+h1 {
+    font-size: clamp(42px, 8vw, 88px);
+
+    margin: 15px 0;
+
+    color: #00ffff;
+
+    text-shadow:
+        0 0 18px #00ffff;
+}
+
+h2 {
+    font-size: 32px;
+
+    color: #00ffff;
+
+    margin-top: 0;
+}
+
+.sub {
+    color: #7fffff;
+
+    letter-spacing: 3px;
+}
+
+.green {
+    color: #00ff88;
+}
+
+.red {
+    color: #ff1744;
+}
+
+.small {
+    font-size: 13px;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap: 18px;
+}
+
+/* CARDS */
+
+.card {
+    padding: 22px;
+
+    border:
+        1px solid
+        rgba(0,255,255,.45);
+
+    background:
+        rgba(0,255,255,.025);
+
+    transition: .3s;
+}
+
+.card:hover {
+    transform:
+        translateY(-8px)
+        scale(1.035);
+
+    border-color: #00ff88;
+
+    box-shadow:
+        0 0 24px
+        rgba(0,255,136,.25);
+}
+
+/* PHOTO */
+
+.photoWrap {
+    width: 240px;
+    height: 240px;
+
+    margin:
+        0 auto 28px;
+
+    position: relative;
+}
+
+.photo {
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    position: absolute;
+
+    left: 10px;
+    top: 10px;
+
+    border:
+        3px solid #00ffff;
+
+    box-shadow:
+        0 0 30px
+        #00ffff55;
+}
+
+/* ROTATING RINGS */
+
+.ring {
+    position: absolute;
+
+    inset: -15px;
+
+    border:
+        2px dashed
+        #00ff88;
+
+    border-radius: 50%;
+
+    animation:
+        spin 7s linear infinite;
+}
+
+.ring2 {
+    position: absolute;
+
+    inset: -28px;
+
+    border:
+        1px dotted
+        #00ffff;
+
+    border-radius: 50%;
+
+    animation:
+        spin 10s linear reverse infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* PHOTO SCANNER */
+
+.scan {
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+
+    height: 3px;
+
+    background: #00ff88;
+
+    box-shadow:
+        0 0 12px #00ff88;
+
+    animation:
+        scan 2s linear infinite;
+}
+
+@keyframes scan {
+
+    0% {
+        top: 10px;
+    }
+
+    100% {
+        top: 228px;
+    }
+
+}
+
+/* SKILL BAR */
+
+.bar {
+    height: 10px;
+
+    background: #06232b;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+}
+
+.bar i {
+    display: block;
+
+    height: 100%;
+
+    width: 0;
+
+    background: #00ffff;
+
+    box-shadow:
+        0 0 12px #00ffff;
+
+    transition:
+        2s;
+}
+
+.show .bar i {
+    width: var(--w);
+}
+
+/* MOVING LINE */
+
+.line {
+    height: 2px;
+
+    background: #00ffff;
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 0;
+
+    animation:
+        move 4s linear infinite;
+
+    opacity: .7;
+}
+
+@keyframes move {
+
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+
+}
+
+/* STATUS */
+
+.status {
+    font-size: 14px;
+
+    line-height: 2;
+}
+
+/* FOOTER */
+
+footer {
+    min-height: 60vh;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ========================= -->
+<!-- PROFILE -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<div class="sub">
+◢ CYBERSECURITY PORTFOLIO //
+SCROLL TO EXPLORE
+</div>
+
+
+<div class="photoWrap">
+
+<img
+class="photo"
+src="1750497247155(1).jpg"
+alt="Jeevan"
+>
+
+<div class="ring"></div>
+
+<div class="ring2"></div>
+
+<div class="scan"></div>
+
+</div>
+
+
+<div style="text-align:center">
+
+<h1>
+JEEVAN
+</h1>
+
+<div class="sub">
+
+ETHICAL HACKER • CYBERSECURITY
+
+</div>
+
+<p class="green">
+
+● SYSTEM ONLINE //
+ID VERIFIED //
+THREAT LOW
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- ABOUT -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ ABOUT ME
+</h2>
+
+<p>
+Cybersecurity learner focused on ethical hacking,
+penetration testing, network defense and security labs.
+</p>
+
+<p class="green">
+
+[+] LEARN • BUILD • TEST • SECURE
+
+</p>
+
+<div class="status">
+
+PROFILE SCAN:
+<span class="green">
+ACTIVE
+</span>
+
+<br>
+
+SECURITY MODE:
+<span class="green">
+DEFENSIVE / ETHICAL
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- SKILLS -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ SKILLS
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+Penetration Testing
+
+<div class="bar">
+
+<i style="--w:92%"></i>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+Network Security
+
+<div class="bar">
+
+<i style="--w:88%"></i>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+Python
+
+<div class="bar">
+
+<i style="--w:82%"></i>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+Linux
+
+<div class="bar">
+
+<i style="--w:90%"></i>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+Web Security
+
+<div class="bar">
+
+<i style="--w:85%"></i>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- TOOLS -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ SECURITY TOOLS
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+Nmap
+
+<br>
+
+<span class="green">
+● LOADED
+</span>
+
+</div>
+
+
+<div class="card">
+
+Burp Suite
+
+<br>
+
+<span class="green">
+● LOADED
+</span>
+
+</div>
+
+
+<div class="card">
+
+Wireshark
+
+<br>
+
+<span class="green">
+● LOADED
+</span>
+
+</div>
+
+
+<div class="card">
+
+Kali Linux
+
+<br>
+
+<span class="green">
+● LOADED
+</span>
+
+</div>
+
+
+<div class="card">
+
+Metasploit
+
+<br>
+
+<span class="green">
+● LOADED
+</span>
+
+</div>
+
+
+<div class="card">
+
+Git
+
+<br>
+
+<span class="green">
+● LOADED
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- PROJECTS -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ PROJECTS
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<b>
+01 // SECURITY SCANNER
+</b>
+
+<p>
+Automated security checks
+and reporting.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<b>
+02 // NETWORK MONITOR
+</b>
+
+<p>
+Live traffic and threat
+visualization.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<b>
+03 // CYBER HUD
+</b>
+
+<p>
+Animated cybersecurity
+portfolio interface.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- CERTIFICATIONS -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ CERTIFICATIONS / LEARNING
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+Google Cybersecurity
+
+<br>
+
+<span class="green">
+LEARNING
+</span>
+
+</div>
+
+
+<div class="card">
+
+TryHackMe
+
+<br>
+
+<span class="green">
+ACTIVE
+</span>
+
+</div>
+
+
+<div class="card">
+
+Hack The Box
+
+<br>
+
+<span class="green">
+ACTIVE
+</span>
+
+</div>
+
+
+<div class="card">
+
+eJPT
+
+<br>
+
+<span class="green">
+TARGET
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- NETWORK ATTACK -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ NETWORK ATTACK MONITOR
+</h2>
+
+
+<svg
+viewBox="0 0 900 300"
+width="100%"
+>
+
+
+<g
+stroke="#00ffff"
+opacity=".45"
+fill="none"
+stroke-width="2"
+>
+
+<path
+id="n1"
+d="M60 180
+L220 80
+L420 200
+L610 90
+L820 160"
+/>
+
+
+<path
+id="n2"
+d="M60 180
+L280 250
+L420 200
+L650 250
+L820 160"
+/>
+
+</g>
+
+
+<g fill="#00ffff">
+
+<circle cx="60" cy="180" r="8"/>
+
+<circle cx="220" cy="80" r="8"/>
+
+<circle cx="420" cy="200" r="10"/>
+
+<circle cx="610" cy="90" r="8"/>
+
+<circle cx="820" cy="160" r="8"/>
+
+</g>
+
+
+<g fill="#ff1744">
+
+<circle r="6">
+
+<animateMotion
+dur="1.4s"
+repeatCount="indefinite"
+>
+
+<mpath href="#n1"/>
+
+</animateMotion>
+
+</circle>
+
+
+<circle r="6">
+
+<animateMotion
+dur="1.8s"
+begin=".5s"
+repeatCount="indefinite"
+>
+
+<mpath href="#n2"/>
+
+</animateMotion>
+
+</circle>
+
+</g>
+
+
+<text
+x="60"
+y="285"
+fill="#ff1744"
+font-family="Consolas"
+>
+
+⚠ ATTACK PACKETS DETECTED
+
+</text>
+
+</svg>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- DATA STREAM -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ LIVE DATA STREAM
+</h2>
+
+
+<svg
+viewBox="0 0 900 300"
+width="100%"
+>
+
+
+<path
+id="d1"
+d="
+M30 150
+C180 40 300 260 450 150
+S720 50 870 150
+"
+fill="none"
+stroke="#00ffff"
+stroke-width="2"
+/>
+
+
+<circle
+r="7"
+fill="#00ff88"
+>
+
+<animateMotion
+dur="2s"
+repeatCount="indefinite"
+>
+
+<mpath href="#d1"/>
+
+</animateMotion>
+
+</circle>
+
+
+<text
+x="40"
+y="70"
+fill="#00ff88"
+font-family="Consolas"
+>
+
+01010110 11001001
+
+</text>
+
+
+<text
+x="500"
+y="245"
+fill="#00ff88"
+font-family="Consolas"
+>
+
+10110101 00101110
+
+</text>
+
+
+<text
+x="40"
+y="285"
+fill="#00ff88"
+font-family="Consolas"
+>
+
+● STREAM ACTIVE // ENCRYPTED
+
+</text>
+
+</svg>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- STATUS -->
+<!-- ========================= -->
+
+<section>
+
+<div class="panel reveal">
+
+<div class="line"></div>
+
+<h2>
+◢ LIVE STATUS / SOCIAL
+</h2>
+
+
+<div class="status">
+
+FIREWALL ........
+<span class="green">
+ACTIVE ✓
+</span>
+
+<br>
+
+
+IDS .............
+<span class="green">
+ONLINE ✓
+</span>
+
+<br>
+
+
+THREAT ..........
+<span class="green">
+LOW
+</span>
+
+<br>
+
+
+NETWORK .........
+<span class="green">
+SECURE
+</span>
+
+</div>
+
+
+<hr
+style="
+border-color:#00ffff33;
+margin:30px 0;
+">
+
+
+<p>
+
+GitHub • LinkedIn •
+TryHackMe • Hack The Box
+
+</p>
+
+
+<p class="green">
+
+◢ END OF PROFILE //
+THANK YOU FOR SCROLLING
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
+
+<script>
+
+const items =
+document.querySelectorAll(".reveal");
+
+
+const observer =
+new IntersectionObserver(
+
+(entries) => {
+
+entries.forEach(
+
+entry => {
+
+if (entry.isIntersecting) {
+
+entry.target.classList.add("show");
+
+}
+else {
+
+entry.target.classList.remove("show");
+
+}
+
+});
+
+},
+
+{
+threshold: 0.18
+}
+
+);
+
+
+items.forEach(
+item => observer.observe(item)
+);
+
+</script>
+
+
+</body>
+</html>
