@@ -135,56 +135,6 @@ footer{min-height:60vh}
  </div>
 </section>
 
-<section>
- <div class="panel reveal">
-  <div class="line"></div><h2>◢ NETWORK ATTACK MONITOR</h2>
-  <svg viewBox="0 0 900 300" width="100%" aria-label="Animated network attack map">
-   <g stroke="#00ffff" opacity=".45" fill="none" stroke-width="2">
-    <path id="n1" d="M60 180 L220 80 L420 200 L610 90 L820 160"/>
-    <path id="n2" d="M60 180 L280 250 L420 200 L650 250 L820 160"/>
-   </g>
-   <g fill="#00ffff">
-    <circle cx="60" cy="180" r="8"/><circle cx="220" cy="80" r="8"/><circle cx="420" cy="200" r="10"/><circle cx="610" cy="90" r="8"/><circle cx="820" cy="160" r="8"/>
-   </g>
-   <g fill="#ff1744">
-    <circle r="6"><animateMotion dur="1.4s" repeatCount="indefinite"><mpath href="#n1"/></animateMotion></circle>
-    <circle r="6"><animateMotion dur="1.8s" begin=".5s" repeatCount="indefinite"><mpath href="#n2"/></animateMotion></circle>
-   </g>
-   <text x="60" y="285" fill="#ff1744" font-family="Consolas">⚠ ATTACK PACKETS DETECTED</text>
-  </svg>
- </div>
-</section>
-
-<section>
- <div class="panel reveal">
-  <div class="line"></div><h2>◢ LIVE DATA STREAM</h2>
-  <svg viewBox="0 0 900 300" width="100%">
-   <path id="d1" d="M30 150 C180 40 300 260 450 150 S720 50 870 150" fill="none" stroke="#00ffff" stroke-width="2"/>
-   <circle r="7" fill="#00ff88">
-    <animateMotion dur="2s" repeatCount="indefinite"><mpath href="#d1"/></animateMotion>
-   </circle>
-   <text x="40" y="70" fill="#00ff88" font-family="Consolas">01010110 11001001</text>
-   <text x="500" y="245" fill="#00ff88" font-family="Consolas">10110101 00101110</text>
-   <text x="40" y="285" fill="#00ff88" font-family="Consolas">● STREAM ACTIVE // ENCRYPTED</text>
-  </svg>
- </div>
-</section>
-
-<section>
- <div class="panel reveal">
-  <div class="line"></div><h2>◢ LIVE STATUS / SOCIAL</h2>
-  <div class="status">
-   FIREWALL ........ <span class="green">ACTIVE ✓</span><br>
-   IDS ............. <span class="green">ONLINE ✓</span><br>
-   THREAT .......... <span class="green">LOW</span><br>
-   NETWORK ......... <span class="green">SECURE</span>
-  </div>
-  <hr style="border-color:#00ffff33;margin:30px 0">
-  <p>GitHub • LinkedIn • TryHackMe • Hack The Box</p>
-  <p class="green">◢ END OF PROFILE // THANK YOU FOR SCROLLING</p>
- </div>
-</section>
-
 <script>
 const items=document.querySelectorAll('.reveal');
 const observer=new IntersectionObserver((entries)=>{
